@@ -1,3 +1,4 @@
+import os
 from flask import Flask, render_template, request, redirect, url_for, session, jsonify
 from anime_data import characters
 from tourism_data import countries
@@ -12,7 +13,7 @@ from api_helpers import get_stock_quote, get_news, get_anime_character, get_coun
 from translations import get_text
 
 app = Flask(__name__)
-app.secret_key = "narutofoxs_secret_key_2026"
+app.secret_key = os.environ.get("SECRET_KEY", "narutofoxs_secret_key_2026")
 
 def current_lang():
     return session.get("lang", "uz")
