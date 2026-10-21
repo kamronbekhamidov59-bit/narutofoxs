@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Narutofoxs - Avtomobillar</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        body { display: flex; min-height: 100vh; margin: 0; }
+        .sidebar {
+            width: 260px; background: #140f1f; border-right: 1px solid rgba(177,156,217,0.2);
+            padding: 25px 15px; flex-shrink: 0;
+        }
+        .sidebar .logo {
+            font-size: 22px; font-weight: 700; margin-bottom: 30px; padding-left: 10px;
+            background: linear-gradient(90deg, #c41e3a, #b19cd9);
+            -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .sidebar a {
+            display: block; padding: 12px 15px; color: #a89bb9; text-decoration: none;
+            border-radius: 8px; margin-bottom: 4px; font-size: 15px;
+        }
+        .sidebar a:hover, .sidebar a.active {
+            background: rgba(196, 30, 58, 0.15); color: #f0e6ff;
+        }
+        .main { flex: 1; padding: 40px; }
+        .search-box {
+            display: flex; gap: 10px; margin: 25px 0 30px;
+        }
+        .search-box input {
+            flex: 1; padding: 14px 18px; background: #140f1f;
+            border: 1px solid rgba(177,156,217,0.25); border-radius: 10px;
+            color: #f0e6ff; font-size: 16px;
+        }
+        .search-box button {
+            padding: 0 28px; background: linear-gradient(135deg, #c41e3a, #6b5b95);
+            border: none; border-radius: 10px; color: white; font-size: 15px; cursor: pointer;
+        }
+        .result {
+            background: #140f1f; border: 1px solid rgba(177,156,217,0.2);
+            border-radius: 14px; padding: 30px; margin-top: 20px;
+        }
+        .result h2 { margin-bottom: 12px; color: #b19cd9; }
+        .result p { line-height: 1.7; color: #d0c4e8; margin-bottom: 8px; }
+    </style>
+</head>
+<body class="theme-cars">
+    <div class="sidebar">
+    <div class="logo">🦊 Narutofoxs</div>
+
+    <div style="display:flex;gap:6px;margin:10px 0 20px;padding-left:10px;">
+        <a href="/set_lang/uz" style="padding:6px 10px;font-size:13px;background:#1a1525;border:1px solid rgba(177,156,217,0.25);border-radius:6px;color:#a89bb9;text-decoration:none;">UZ</a>
+        <a href="/set_lang/en" style="padding:6px 10px;font-size:13px;background:#1a1525;border:1px solid rgba(177,156,217,0.25);border-radius:6px;color:#a89bb9;text-decoration:none;">EN</a>
+        <a href="/set_lang/ja" style="padding:6px 10px;font-size:13px;background:#1a1525;border:1px solid rgba(177,156,217,0.25);border-radius:6px;color:#a89bb9;text-decoration:none;">JA</a>
+    </div>
+
+    <a href="/dashboard">🏠 {{ t.home }}</a>
+    <a href="/anime">🎌 {{ t.anime }}</a>
+    <a href="/tourism">✈️ {{ t.tourism }}</a>
+    <a href="/products">📊 {{ t.products }}</a>
+    <a href="/ai">🤖 {{ t.ai }}</a>
+    <a href="/stocks">📈 {{ t.stocks }}</a>
+    <a href="/education">📚 {{ t.education }}</a>
+    <a href="/japan">🇯🇵 {{ t.japan }}</a>
+    <a href="/cars">🚗 {{ t.cars }}</a>
+    <a href="/news">💻 {{ t.news }}</a>
+    <a href="/login" style="margin-top:30px;color:#c41e3a;">{{ t.logout }}</a>
+</div>
+
+    <div class="main">
+        <h1>🚗 Avtomobillar</h1>
+        <p style="color:#a89bb9;">Qit’a yoki brend nomini yozing (Amerika, Osiyo, Yevropa, Toyota, BMW...)</p>
+
+        <form class="search-box" method="POST">
+            <input type="text" name="query" placeholder="Masalan: Amerika, Osiyo, Yevropa, Toyota, BMW, Mercedes..." required>
+            <button type="submit">{{ t.search }}</button>
+        </form>
+
+        {% if result %}
+        <div class="result">
+            <h2>{{ result.name }}</h2>
+            <p><strong>Ma’lumot:</strong> {{ result.info }}</p>
+            <p><strong>Mashhur modellar:</strong> {{ result.models }}</p>
+            <p><strong>Narx oralig‘i (taxminiy):</strong> {{ result.price }}</p>
+        </div>
+        {% elif searched %}
+        <div class="result">
+            <p>Ma’lumot topilmadi. Qit’a (Amerika, Osiyo, Yevropa, Afrika) yoki brend (Toyota, BMW, Mercedes, Tesla...) yozib ko‘ring.</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

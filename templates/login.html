@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Narutofoxs - Kirish</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="login-container">
+        <h1>🦊 Narutofoxs</h1>
+        <p class="subtitle">Kosmos va sun’iy intellekt olamiga xush kelibsiz</p>
+
+        <a href="/auth/google" class="btn btn-google">
+            Google bilan davom etish
+        </a>
+
+        <a href="/auth/apple" class="btn btn-apple">
+            Apple bilan davom etish
+        </a>
+
+        <div class="divider">yoki</div>
+
+        <form action="/login" method="POST">
+            <div class="form-group">
+                <label>Elektron pochta</label>
+                <input type="email" name="email" placeholder="Elektron pochta manzilingiz" required>
+            </div>
+            <button type="submit" class="btn btn-email">Elektron pochta bilan davom etish</button>
+        </form>
+
+        <div class="footer-links">
+            Hisobingiz yo‘qmi? <a href="/register">Ro‘yxatdan o‘tish</a>
+        </div>
+
+        <div class="footer-links" style="margin-top: 16px; font-size: 12px;">
+            <a href="#">Xizmat shartlari</a> va <a href="#">Maxfiylik siyosati</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Narutofoxs - Ro‘yxatdan o‘tish</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="login-container">
+        <h1>🦊 Narutofoxs</h1>
+        <p class="subtitle">Yangi hisob yaratish</p>
+
+        <form action="/register" method="POST">
+            <div class="form-group">
+                <label>Foydalanuvchi nomi</label>
+                <input type="text" name="username" placeholder="Foydalanuvchi nomingiz" required>
+            </div>
+
+            <div class="form-group">
+                <label>Yosh</label>
+                <input type="number" name="age" placeholder="Yoshingiz" min="10" max="100" required>
+            </div>
+
+            <div class="form-group">
+                <label>Elektron pochta</label>
+                <input type="email" name="email" placeholder="Elektron pochta manzilingiz" required>
+            </div>
+
+            <button type="submit" class="btn btn-email">Ro‘yxatdan o‘tish</button>
+        </form>
+
+        <div class="footer-links">
+            Allaqachon hisobingiz bormi? <a href="/login">Kirish</a>
+        </div>
+    </div>
+</body>
+</html>

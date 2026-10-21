@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Yordamchi — Narutofoxs</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        body { display: flex; min-height: 100vh; margin: 0; background: radial-gradient(ellipse at top left, #142830 0%, #0a0612 60%); color: #f0e6ff; font-family: system-ui, sans-serif; }
+        .sidebar { width: 250px; background: rgba(14,10,24,0.95); border-right: 1px solid rgba(100,220,180,0.25); padding: 24px 14px; flex-shrink: 0; }
+        .sidebar .logo { font-size: 22px; font-weight: 800; margin-bottom: 16px; padding-left: 8px; background: linear-gradient(90deg, #c41e3a, #b19cd9); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+        .sidebar a { display: block; padding: 11px 14px; color: #a89bb9; text-decoration: none; border-radius: 8px; margin-bottom: 3px; font-size: 14px; }
+        .sidebar a:hover, .sidebar a.active { background: rgba(100,220,180,0.12); color: #f0e6ff; }
+        .main { flex: 1; padding: 36px; max-width: 800px; }
+        .main h1 { margin-bottom: 8px; }
+        .main .sub { color: #a89bb9; margin-bottom: 24px; font-size: 14px; }
+        textarea {
+            width: 100%; min-height: 100px; padding: 14px; border-radius: 12px;
+            border: 1px solid rgba(177,156,217,0.25); background: #140f1f; color: #f0e6ff;
+            font-size: 15px; resize: vertical; font-family: inherit;
+        }
+        button {
+            margin-top: 12px; padding: 12px 28px; border: none; border-radius: 10px;
+            background: linear-gradient(135deg, #2d8f6f, #6b5b95); color: white;
+            font-size: 15px; font-weight: 600; cursor: pointer;
+        }
+        .answer {
+            margin-top: 24px; background: #140f1f; border: 1px solid rgba(100,220,180,0.25);
+            border-radius: 14px; padding: 22px; line-height: 1.7; white-space: pre-wrap;
+        }
+        .answer h3 { color: #64dcb4; margin-bottom: 12px; font-size: 15px; }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo">🦊 Narutofoxs</div>
+        <a href="/dashboard">🏠 {{ t.home }}</a>
+        <a href="/anime">🎌 {{ t.anime }}</a>
+        <a href="/tourism">✈️ {{ t.tourism }}</a>
+        <a href="/ai">🤖 {{ t.ai }}</a>
+        <a href="/chat" class="active">💬 AI Yordamchi</a>
+        <a href="/stocks">📈 {{ t.stocks }}</a>
+        <a href="/education">📚 {{ t.education }}</a>
+        <a href="/japan">🇯🇵 {{ t.japan }}</a>
+        <a href="/news">💻 {{ t.news }}</a>
+        <a href="/login" style="margin-top:28px;color:#c41e3a;">{{ t.logout }}</a>
+    </div>
+
+    <div class="main">
+        <h1>💬 AI Yordamchi</h1>
+        <p class="sub">Sayt xatolari, kod, maslahat — savolingizni yozing (Groq / Llama, bepul)</p>
+
+        <form method="POST">
+            <textarea name="message" placeholder="Masalan: Flask da xato chiqsa nima qilay? Anime bo‘limini qanday yaxshilayman?">{{ question }}</textarea>
+            <button type="submit">Yuborish</button>
+        </form>
+
+        {% if answer %}
+        <div class="answer">
+            <h3>Javob</h3>
+            {{ answer }}
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

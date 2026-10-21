@@ -1,0 +1,210 @@
+:root {
+    --bg: #0a0612;
+    --panel: #140f1f;
+    --red: #c41e3a;
+    --red2: #8b0000;
+    --purple: #b19cd9;
+    --purple2: #6b5b95;
+    --text: #f0e6ff;
+    --muted: #a89bb9;
+    --line: rgba(177, 156, 217, 0.2);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background: radial-gradient(ellipse at top, #1a0b2e 0%, #0a0612 70%);
+    color: var(--text);
+    min-height: 100vh;
+}
+
+/* Login page */
+.login-container {
+    max-width: 420px;
+    margin: 60px auto;
+    padding: 40px 30px;
+    background: var(--panel);
+    border-radius: 16px;
+    border: 1px solid var(--line);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+
+.login-container h1 {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 8px;
+    background: linear-gradient(90deg, var(--red), var(--purple));
+    background-clip: text;
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+
+}
+
+.login-container .subtitle {
+    text-align: center;
+    color: var(--muted);
+    margin-bottom: 30px;
+    font-size: 14px;
+}
+
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 12px;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.2s;
+    text-decoration: none;
+    color: white;
+}
+
+.btn-google {
+    background: #1f1a2e;
+    border: 1px solid var(--line);
+}
+
+.btn-google:hover {
+    background: #2a243d;
+}
+
+.btn-apple {
+    background: #1f1a2e;
+    border: 1px solid var(--line);
+}
+
+.btn-apple:hover {
+    background: #2a243d;
+}
+
+.btn-email {
+    background: linear-gradient(135deg, var(--red), var(--purple2));
+    margin-top: 10px;
+}
+
+.btn-email:hover {
+    opacity: 0.9;
+}
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 14px;
+    background: #0d0a16;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    color: var(--text);
+    font-size: 15px;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--purple);
+}
+
+.divider {
+    text-align: center;
+    margin: 20px 0;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.footer-links {
+    text-align: center;
+    margin-top: 24px;
+    font-size: 13px;
+    color: var(--muted);
+}
+
+.footer-links a {
+    color: var(--purple);
+    text-decoration: none;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+/* Bo'limlarga maxsus fon */
+body.theme-anime {
+    background: radial-gradient(ellipse at top left, #2a1840 0%, #0a0612 60%) !important;
+}
+body.theme-anime .sidebar {
+    border-right-color: rgba(177, 100, 255, 0.35);
+}
+
+body.theme-tourism {
+    background: radial-gradient(ellipse at top left, #0f2840 0%, #0a0612 60%) !important;
+}
+body.theme-tourism .sidebar {
+    border-right-color: rgba(100, 180, 255, 0.35);
+}
+
+body.theme-ai {
+    background: radial-gradient(ellipse at top left, #142830 0%, #0a0612 60%) !important;
+}
+body.theme-ai .sidebar {
+    border-right-color: rgba(100, 220, 180, 0.35);
+}
+
+body.theme-japan {
+    background: radial-gradient(ellipse at top left, #3a1020 0%, #0a0612 60%) !important;
+}
+body.theme-japan .sidebar {
+    border-right-color: rgba(220, 60, 80, 0.4);
+}
+
+body.theme-edu {
+    background: radial-gradient(ellipse at top left, #1a2040 0%, #0a0612 60%) !important;
+}
+body.theme-edu .sidebar {
+    border-right-color: rgba(120, 140, 255, 0.35);
+}
+
+body.theme-stocks {
+    background: radial-gradient(ellipse at top left, #0f3020 0%, #0a0612 60%) !important;
+}
+body.theme-stocks .sidebar {
+    border-right-color: rgba(80, 200, 120, 0.35);
+}
+
+body.theme-news {
+    background: radial-gradient(ellipse at top left, #101828 0%, #0a0612 60%) !important;
+}
+body.theme-news .sidebar {
+    border-right-color: rgba(100, 150, 255, 0.35);
+}
+
+body.theme-cars {
+    background: radial-gradient(ellipse at top left, #201810 0%, #0a0612 60%) !important;
+}
+body.theme-cars .sidebar {
+    border-right-color: rgba(220, 160, 80, 0.35);
+}
+
+body.theme-products {
+    background: radial-gradient(ellipse at top left, #201828 0%, #0a0612 60%) !important;
+}
+body.theme-products .sidebar {
+    border-right-color: rgba(180, 120, 255, 0.35);
+}

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Narutofoxs</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            min-height: 100vh;
+            background: radial-gradient(ellipse at 30% 10%, #2a1535 0%, #0c0820 40%, #050308 100%);
+            color: #f0e6ff;
+            font-family: system-ui, -apple-system, sans-serif;
+            overflow-x: hidden;
+        }
+        .stars {
+            position: fixed; inset: 0; pointer-events: none; z-index: 0;
+            background-image:
+                radial-gradient(1px 1px at 40px 60px, #fff, transparent),
+                radial-gradient(1px 1px at 120px 180px, rgba(255,255,255,0.6), transparent),
+                radial-gradient(1.5px 1.5px at 250px 90px, #b19cd9, transparent),
+                radial-gradient(1px 1px at 380px 220px, #fff, transparent),
+                radial-gradient(1px 1px at 520px 40px, rgba(255,255,255,0.4), transparent),
+                radial-gradient(1.2px 1.2px at 700px 150px, #c41e3a, transparent);
+            background-size: 800px 400px;
+            opacity: 0.55;
+        }
+        .top {
+            position: relative; z-index: 2;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 22px 40px;
+        }
+        .logo {
+            font-size: 28px; font-weight: 800;
+            background: linear-gradient(90deg, #c41e3a, #b19cd9, #7ec8e3);
+            -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .auth a {
+            margin-left: 12px; padding: 11px 22px; border-radius: 12px;
+            text-decoration: none; font-size: 14px; font-weight: 600;
+        }
+        .auth .login {
+            color: #f0e6ff; border: 1px solid rgba(177,156,217,0.4);
+            background: rgba(20,15,31,0.5);
+        }
+        .auth .signup {
+            background: linear-gradient(135deg, #c41e3a, #6b5b95);
+            color: white;
+            box-shadow: 0 4px 20px rgba(196,30,58,0.35);
+        }
+        .hero {
+            position: relative; z-index: 2;
+            text-align: center; padding: 70px 20px 30px;
+        }
+        .hero h1 {
+            font-size: 56px; font-weight: 900; margin-bottom: 14px; letter-spacing: -1px;
+            background: linear-gradient(100deg, #ff6b8a 0%, #b19cd9 40%, #7ec8e3 70%, #6bffb8 100%);
+            -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .hero p {
+            font-size: 17px; color: #a89bb9; max-width: 540px; margin: 0 auto 32px; line-height: 1.65;
+        }
+        .hero .cta {
+            display: inline-block; padding: 15px 40px;
+            background: linear-gradient(135deg, #c41e3a, #8b5cf6);
+            color: white; text-decoration: none; border-radius: 14px;
+            font-size: 16px; font-weight: 700;
+            box-shadow: 0 10px 40px rgba(196,30,58,0.4);
+            transition: 0.25s;
+        }
+        .hero .cta:hover { transform: translateY(-2px); box-shadow: 0 14px 45px rgba(196,30,58,0.5); }
+        .features {
+            position: relative; z-index: 2;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 16px; max-width: 980px; margin: 40px auto; padding: 0 24px 50px;
+        }
+        .feat {
+            border-radius: 18px; padding: 28px 20px; text-align: center;
+            text-decoration: none; color: inherit;
+            border: 1px solid transparent;
+            transition: 0.28s; backdrop-filter: blur(10px);
+        }
+        .feat:hover { transform: translateY(-6px); }
+        .feat .icon { font-size: 34px; margin-bottom: 12px; }
+        .feat h3 { font-size: 16px; margin-bottom: 8px; color: #f0e6ff; }
+        .feat p { font-size: 13px; color: #a89bb9; line-height: 1.5; }
+
+        /* Bo'lim ranglari */
+        .feat-anime {
+            background: linear-gradient(160deg, rgba(80,40,120,0.45), rgba(20,15,31,0.85));
+            border-color: rgba(177,100,255,0.35);
+        }
+        .feat-anime:hover { box-shadow: 0 12px 35px rgba(140,80,255,0.25); border-color: #b19cd9; }
+
+        .feat-tourism {
+            background: linear-gradient(160deg, rgba(30,80,140,0.45), rgba(20,15,31,0.85));
+            border-color: rgba(100,180,255,0.35);
+        }
+        .feat-tourism:hover { box-shadow: 0 12px 35px rgba(80,160,255,0.25); border-color: #64b4ff; }
+
+        .feat-ai {
+            background: linear-gradient(160deg, rgba(30,100,90,0.45), rgba(20,15,31,0.85));
+            border-color: rgba(100,220,180,0.35);
+        }
+        .feat-ai:hover { box-shadow: 0 12px 35px rgba(80,200,160,0.25); border-color: #64dcb4; }
+
+        .feat-japan {
+            background: linear-gradient(160deg, rgba(120,30,50,0.5), rgba(20,15,31,0.85));
+            border-color: rgba(220,60,80,0.4);
+        }
+        .feat-japan:hover { box-shadow: 0 12px 35px rgba(196,30,58,0.3); border-color: #c41e3a; }
+
+        .feat-edu {
+            background: linear-gradient(160deg, rgba(40,50,120,0.45), rgba(20,15,31,0.85));
+            border-color: rgba(120,140,255,0.35);
+        }
+        .feat-edu:hover { box-shadow: 0 12px 35px rgba(100,120,255,0.25); border-color: #788cff; }
+
+        .feat-stocks {
+            background: linear-gradient(160deg, rgba(30,100,60,0.45), rgba(20,15,31,0.85));
+            border-color: rgba(80,200,120,0.35);
+        }
+        .feat-stocks:hover { box-shadow: 0 12px 35px rgba(60,180,100,0.25); border-color: #50c878; }
+
+        .feat-news {
+            background: linear-gradient(160deg, rgba(30,50,100,0.45), rgba(20,15,31,0.85));
+            border-color: rgba(100,150,255,0.35);
+        }
+        .feat-news:hover { box-shadow: 0 12px 35px rgba(80,130,255,0.25); border-color: #6496ff; }
+
+        .feat-cars {
+            background: linear-gradient(160deg, rgba(100,70,30,0.45), rgba(20,15,31,0.85));
+            border-color: rgba(220,160,80,0.35);
+        }
+        .feat-cars:hover { box-shadow: 0 12px 35px rgba(200,140,60,0.25); border-color: #dca050; }
+
+        .feat-products {
+            background: linear-gradient(160deg, rgba(90,50,120,0.45), rgba(20,15,31,0.85));
+            border-color: rgba(180,120,255,0.35);
+        }
+        .feat-products:hover { box-shadow: 0 12px 35px rgba(160,100,255,0.25); border-color: #b478ff; }
+
+        .footer {
+            position: relative; z-index: 2;
+            text-align: center; padding: 18px; color: #5a5070; font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+
+    <div class="top">
+        <div class="logo">🦊 Narutofoxs</div>
+        <div class="auth">
+            <a href="/login" class="login">Kirish</a>
+            <a href="/register" class="signup">Ro‘yxatdan o‘tish</a>
+        </div>
+    </div>
+
+    <div class="hero">
+        <h1>Narutofoxs</h1>
+        <p>Anime, turizm, AI, texnologiya va Yaponiya — barchasi bir joyda. Kosmos uslubidagi shaxsiy platforma.</p>
+        <a href="/login" class="cta">Boshlash →</a>
+    </div>
+
+    <div class="features">
+        <a href="/anime" class="feat feat-anime">
+            <div class="icon">🎌</div>
+            <h3>Anime</h3>
+            <p>Personajlar haqida ma’lumot</p>
+        </a>
+        <a href="/tourism" class="feat feat-tourism">
+            <div class="icon">✈️</div>
+            <h3>Turizm</h3>
+            <p>Davlatlar va sayohat joylari</p>
+        </a>
+        <a href="/ai" class="feat feat-ai">
+            <div class="icon">🤖</div>
+            <h3>AI</h3>
+            <p>Sun’iy intellektlar</p>
+        </a>
+        <a href="/japan" class="feat feat-japan">
+            <div class="icon">🇯🇵</div>
+            <h3>Yaponiya</h3>
+            <p>Madaniyat va Telegram</p>
+        </a>
+        <a href="/education" class="feat feat-edu">
+            <div class="icon">📚</div>
+            <h3>Ta’lim</h3>
+            <p>Darslar + video</p>
+        </a>
+        <a href="/stocks" class="feat feat-stocks">
+            <div class="icon">📈</div>
+            <h3>Aksiya</h3>
+            <p>Real bozor narxlari</p>
+        </a>
+        <a href="/news" class="feat feat-news">
+            <div class="icon">💻</div>
+            <h3>IT / AI</h3>
+            <p>Texnologiya yangiliklari</p>
+        </a>
+        <a href="/cars" class="feat feat-cars">
+            <div class="icon">🚗</div>
+            <h3>Avtomobillar</h3>
+            <p>Qit’alar bo‘yicha</p>
+        </a>
+        <a href="/products" class="feat feat-products">
+            <div class="icon">📊</div>
+            <h3>Mahsulotlar</h3>
+            <p>Ishlab chiqarish statistikasi</p>
+        </a>
+    </div>
+
+    <div class="footer">© 2026 Narutofoxs</div>
+</body>
+</html>

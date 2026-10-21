@@ -1,0 +1,66 @@
+# translations.py — UI matnlari (uz / en / ja)
+
+TEXTS = {
+    "uz": {
+        "home": "Bosh sahifa",
+        "anime": "Anime",
+        "tourism": "Turizm",
+        "products": "Mahsulotlar",
+        "ai": "AI",
+        "stocks": "Aksiya",
+        "education": "Ta’lim",
+        "japan": "Yaponiya",
+        "cars": "Avtomobillar",
+        "news": "IT / AI",
+        "logout": "Chiqish",
+        "welcome": "Xush kelibsiz, Narutofoxs!",
+        "choose": "Quyidagi bo‘limlardan birini tanlang",
+        "search": "Qidirish",
+        "login": "Kirish",
+        "signup": "Ro‘yxatdan o‘tish",
+        "lang": "Til",
+    },
+    "en": {
+        "home": "Home",
+        "anime": "Anime",
+        "tourism": "Tourism",
+        "products": "Products",
+        "ai": "AI",
+        "stocks": "Stocks",
+        "education": "Education",
+        "japan": "Japan",
+        "cars": "Cars",
+        "news": "IT / AI",
+        "logout": "Log out",
+        "welcome": "Welcome to Narutofoxs!",
+        "choose": "Choose a section below",
+        "search": "Search",
+        "login": "Login",
+        "signup": "Sign up",
+        "lang": "Language",
+    },
+    "ja": {
+        "home": "ホーム",
+        "anime": "アニメ",
+        "tourism": "観光",
+        "products": "製品",
+        "ai": "人工知能",
+        "stocks": "株式",
+        "education": "教育",
+        "japan": "日本",
+        "cars": "車",
+        "news": "テクノロジー",
+        "logout": "ログアウト",
+        "welcome": "Narutofoxsへようこそ！",
+        "choose": "下のセクションを選んでください",
+        "search": "検索",
+        "login": "ログイン",
+        "signup": "登録",
+        "lang": "言語",
+    },
+}
+
+def get_text(lang):
+    if lang not in TEXTS:
+        lang = "uz"
+    return TEXTS[lang]

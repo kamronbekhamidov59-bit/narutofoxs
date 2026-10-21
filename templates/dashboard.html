@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Narutofoxs</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            display: flex; min-height: 100vh;
+            background: radial-gradient(ellipse at 20% 0%, #1e1230 0%, #0a0612 55%);
+            color: #f0e6ff; font-family: system-ui, sans-serif;
+        }
+        .sidebar {
+            width: 250px; background: rgba(14, 10, 24, 0.95);
+            border-right: 1px solid rgba(177,156,217,0.2);
+            padding: 24px 14px; flex-shrink: 0;
+        }
+        .sidebar .logo {
+            font-size: 22px; font-weight: 800; margin-bottom: 16px; padding-left: 8px;
+            background: linear-gradient(90deg, #c41e3a, #b19cd9);
+            -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .lang-box { display: flex; gap: 6px; margin: 0 0 18px; padding-left: 8px; }
+        .lang-box a {
+            padding: 6px 10px; font-size: 12px; border-radius: 6px; text-decoration: none;
+            background: #1a1525; border: 1px solid rgba(177,156,217,0.25); color: #a89bb9;
+        }
+        .lang-box a.active, .lang-box a:hover {
+            background: rgba(196,30,58,0.25); color: #f0e6ff; border-color: #c41e3a;
+        }
+        .sidebar a {
+            display: block; padding: 11px 14px; color: #a89bb9; text-decoration: none;
+            border-radius: 8px; margin-bottom: 3px; font-size: 14px;
+        }
+        .sidebar a:hover, .sidebar a.active {
+            background: rgba(196,30,58,0.15); color: #f0e6ff;
+        }
+        .main { flex: 1; padding: 40px 36px; }
+        .main h1 {
+            font-size: 28px; margin-bottom: 8px;
+            background: linear-gradient(90deg, #ff6b8a, #b19cd9);
+            -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .main > p { color: #a89bb9; margin-bottom: 28px; }
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 16px;
+        }
+        .card {
+            border-radius: 16px; padding: 26px 16px; text-align: center;
+            text-decoration: none; color: inherit;
+            border: 1px solid transparent; transition: 0.25s;
+        }
+        .card:hover { transform: translateY(-5px); }
+        .card h3 { font-size: 15px; color: #f0e6ff; margin-bottom: 6px; }
+
+        .c-anime { background: linear-gradient(160deg, rgba(80,40,120,0.4), rgba(20,15,31,0.9)); border-color: rgba(177,100,255,0.3); }
+        .c-tourism { background: linear-gradient(160deg, rgba(30,80,140,0.4), rgba(20,15,31,0.9)); border-color: rgba(100,180,255,0.3); }
+        .c-products { background: linear-gradient(160deg, rgba(90,50,120,0.4), rgba(20,15,31,0.9)); border-color: rgba(180,120,255,0.3); }
+        .c-ai { background: linear-gradient(160deg, rgba(30,100,90,0.4), rgba(20,15,31,0.9)); border-color: rgba(100,220,180,0.3); }
+        .c-cars { background: linear-gradient(160deg, rgba(100,70,30,0.4), rgba(20,15,31,0.9)); border-color: rgba(220,160,80,0.3); }
+        .c-news { background: linear-gradient(160deg, rgba(30,50,100,0.4), rgba(20,15,31,0.9)); border-color: rgba(100,150,255,0.3); }
+        .c-stocks { background: linear-gradient(160deg, rgba(30,100,60,0.4), rgba(20,15,31,0.9)); border-color: rgba(80,200,120,0.3); }
+        .c-japan { background: linear-gradient(160deg, rgba(120,30,50,0.45), rgba(20,15,31,0.9)); border-color: rgba(220,60,80,0.35); }
+        .c-edu { background: linear-gradient(160deg, rgba(40,50,120,0.4), rgba(20,15,31,0.9)); border-color: rgba(120,140,255,0.3); }
+
+        #nf-chat-btn {
+            position: fixed; right: 22px; bottom: 22px; z-index: 9999;
+            width: 56px; height: 56px; border-radius: 50%; border: none;
+            background: linear-gradient(135deg, #2d8f6f, #6b5b95);
+            color: white; font-size: 24px; cursor: pointer;
+            box-shadow: 0 6px 24px rgba(0,0,0,0.4);
+        }
+        #nf-chat-box {
+            display: none; position: fixed; right: 22px; bottom: 90px; z-index: 9999;
+            width: 340px; max-height: 420px; background: #140f1f;
+            border: 1px solid rgba(100,220,180,0.3); border-radius: 16px;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.5); flex-direction: column;
+            overflow: hidden;
+        }
+        #nf-chat-box.open { display: flex; }
+        #nf-chat-head {
+            padding: 12px 16px; background: rgba(45,143,111,0.2);
+            font-weight: 700; font-size: 14px; color: #f0e6ff;
+        }
+        #nf-chat-messages {
+            flex: 1; overflow-y: auto; padding: 12px; min-height: 200px; max-height: 280px;
+            font-size: 13px; line-height: 1.5; color: #d0c4e8; white-space: pre-wrap;
+        }
+        #nf-chat-form { display: flex; gap: 8px; padding: 10px; border-top: 1px solid rgba(177,156,217,0.15); }
+        #nf-chat-input {
+            flex: 1; padding: 10px; border-radius: 10px; border: 1px solid rgba(177,156,217,0.25);
+            background: #1a1525; color: #f0e6ff; font-size: 13px;
+        }
+        #nf-chat-send {
+            padding: 10px 14px; border: none; border-radius: 10px;
+            background: linear-gradient(135deg, #2d8f6f, #6b5b95); color: white; cursor: pointer; font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo">🦊 Narutofoxs</div>
+        <div class="lang-box">
+            <a href="/set_lang/uz" class="{% if lang == 'uz' %}active{% endif %}">UZ</a>
+            <a href="/set_lang/en" class="{% if lang == 'en' %}active{% endif %}">EN</a>
+            <a href="/set_lang/ja" class="{% if lang == 'ja' %}active{% endif %}">JA</a>
+        </div>
+        <a href="/dashboard" class="active">🏠 {{ t.home }}</a>
+        <a href="/anime">🎌 {{ t.anime }}</a>
+        <a href="/tourism">✈️ {{ t.tourism }}</a>
+        <a href="/products">📊 {{ t.products }}</a>
+        <a href="/ai">🤖 {{ t.ai }}</a>
+        <a href="/stocks">📈 {{ t.stocks }}</a>
+        <a href="/education">📚 {{ t.education }}</a>
+        <a href="/japan">🇯🇵 {{ t.japan }}</a>
+        <a href="/cars">🚗 {{ t.cars }}</a>
+        <a href="/news">💻 {{ t.news }}</a>
+        <a href="/login" style="margin-top:28px;color:#c41e3a;">{{ t.logout }}</a>
+    </div>
+
+    <div class="main">
+        <h1>{{ t.welcome }}</h1>
+        <p>{{ t.choose }}</p>
+        <div class="cards">
+            <a href="/anime" class="card c-anime"><h3>🎌 {{ t.anime }}</h3></a>
+            <a href="/tourism" class="card c-tourism"><h3>✈️ {{ t.tourism }}</h3></a>
+            <a href="/products" class="card c-products"><h3>📊 {{ t.products }}</h3></a>
+            <a href="/ai" class="card c-ai"><h3>🤖 {{ t.ai }}</h3></a>
+            <a href="/cars" class="card c-cars"><h3>🚗 {{ t.cars }}</h3></a>
+            <a href="/news" class="card c-news"><h3>💻 {{ t.news }}</h3></a>
+            <a href="/stocks" class="card c-stocks"><h3>📈 {{ t.stocks }}</h3></a>
+            <a href="/japan" class="card c-japan"><h3>🇯🇵 {{ t.japan }}</h3></a>
+            <a href="/education" class="card c-edu"><h3>📚 {{ t.education }}</h3></a>
+        </div>
+    </div>
+
+    <button id="nf-chat-btn" title="AI Yordamchi">💬</button>
+    <div id="nf-chat-box">
+        <div id="nf-chat-head">💬 AI Yordamchi</div>
+        <div id="nf-chat-messages">Salom! Sayt yoki kod haqida savol yozing.</div>
+        <form id="nf-chat-form">
+            <input id="nf-chat-input" type="text" placeholder="Savolingiz..." autocomplete="off">
+            <button id="nf-chat-send" type="submit">➤</button>
+        </form>
+    </div>
+
+    <script>
+    const btn = document.getElementById('nf-chat-btn');
+    const box = document.getElementById('nf-chat-box');
+    const form = document.getElementById('nf-chat-form');
+    const input = document.getElementById('nf-chat-input');
+    const messages = document.getElementById('nf-chat-messages');
+    btn.onclick = () => box.classList.toggle('open');
+    form.onsubmit = async (e) => {
+        e.preventDefault();
+        const text = input.value.trim();
+        if (!text) return;
+        messages.textContent += '\n\nSiz: ' + text + '\nAI: ...';
+        input.value = '';
+        messages.scrollTop = messages.scrollHeight;
+        try {
+            const r = await fetch('/api/chat', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({message: text})
+            });
+            const data = await r.json();
+            messages.textContent = messages.textContent.replace(/AI: \.\.\.$/, 'AI: ' + (data.answer || 'Javob yo‘q'));
+        } catch (err) {
+            messages.textContent = messages.textContent.replace(/AI: \.\.\.$/, 'AI: Xato — ' + err);
+        }
+        messages.scrollTop = messages.scrollHeight;
+    };
+    </script>
+</body>
+</html>
